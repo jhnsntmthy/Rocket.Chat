@@ -47,17 +47,17 @@ rocketchat:custom-oauth
 rocketchat:emojione
 rocketchat:favico
 rocketchat:file
-rocketchat:github-enterprise
-rocketchat:gitlab
+#rocketchat:github-enterprise
+#rocketchat:gitlab
 rocketchat:highlight
 rocketchat:highlight-words
-rocketchat:importer
-rocketchat:importer-hipchat
-rocketchat:importer-slack
+#rocketchat:importer
+#rocketchat:importer-hipchat
+#rocketchat:importer-slack
 rocketchat:integrations
 rocketchat:ldap
 rocketchat:lib
-rocketchat:livechat
+#rocketchat:livechat
 rocketchat:logger
 rocketchat:mailer
 rocketchat:markdown
@@ -76,7 +76,7 @@ rocketchat:slashcommands-join
 rocketchat:slashcommands-kick
 rocketchat:slashcommands-leave
 rocketchat:slashcommands-mute
-rocketchat:spotify
+#rocketchat:spotify
 rocketchat:statistics
 rocketchat:theme
 rocketchat:tutum
@@ -90,9 +90,9 @@ rocketchat:ui-message
 rocketchat:ui-sidenav
 rocketchat:version
 rocketchat:webrtc
-rocketchat:wordpress
-#rocketchat:chatops
-#rocketchat:hubot
+#rocketchat:wordpress
+rocketchat:chatops
+rocketchat:hubot
 #rocketchat:irc
 
 konecty:change-case
