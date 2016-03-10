@@ -94,6 +94,7 @@ rocketchat:webrtc
 rocketchat:chatops
 rocketchat:hubot
 #rocketchat:irc
+rocketchat:pubnub
 
 konecty:change-case
 konecty:delayed-task

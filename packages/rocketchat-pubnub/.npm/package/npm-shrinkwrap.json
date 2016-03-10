@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "coffee-script": {
+      "version": "1.9.3"
+    },
+    "lru-cache": {
+      "version": "2.6.5"
+    },
+    "pubnub": {
+      "version": "3.14.1",
+      "dependencies": {
+        "agentkeepalive": {
+          "version": "0.2.4"
+        },
+        "lodash": {
+          "version": "4.6.1"
+        }
+      }
+    }
+  }
+}
