@@ -4,9 +4,9 @@ Meteor.methods
     room = RocketChat.models.Rooms.findOneById channel
 
     admins = RocketChat.models.Users.find {emails: {$elemMatch: {address: {$regex: new RegExp("@copilotplatform.com$","i") }}}} 
-    admins.forEach (admin) -> { 
+    admins.forEach (admin) -> 
+      
       RocketChat.callbacks.run 'beforeJoinRoom', user, room
-
       RocketChat.models.Subscriptions.upsert
         rid: channel
         $and: [{'u._id': admin._id}]
@@ -22,6 +22,5 @@ Meteor.methods
 
       Meteor.defer ->
         RocketChat.callbacks.run 'afterJoinRoom', admin, room
-    }
 
     return true
