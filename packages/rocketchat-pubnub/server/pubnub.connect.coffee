@@ -73,21 +73,7 @@ class PubnubReceiver
         msgs: 0
         ts: now
 
-    # Meteor.call 'openRoomAgents', channel
-
-    target = RocketChat.models.Users.findOneByUsername 'tim.johnson'
-    RocketChat.models.Subscriptions.upsert
-      rid: channel
-      $and: [{'u._id': target._id}]
-    ,
-      $setOnInsert:
-        name: channel
-        t: 'c'
-        open: true
-        alert: true
-        u:
-          _id: target._id
-          username: target.username
+    Meteor.call 'alertAgents', channel
 
     return {
       t: 'c'

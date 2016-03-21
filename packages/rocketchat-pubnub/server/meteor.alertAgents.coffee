@@ -1,35 +1,27 @@
 Meteor.methods
-  alertAgents: (rid) ->
+  alertAgents: (channel) ->
 
-    room = RocketChat.models.Rooms.findOneById rid
+    room = RocketChat.models.Rooms.findOneById channel
 
-    if not room?
-      console.log 'No channel with this id'.red
-      return
+    admins = RocketChat.models.Users.find {emails: {$elemMatch: {address: {$regex: new RegExp("@copilotplatform.com$","i") }}}} 
+    admins.forEach (admin) -> { 
+      RocketChat.callbacks.run 'beforeJoinRoom', user, room
 
-    now = new Date()
+      RocketChat.models.Subscriptions.upsert
+        rid: channel
+        $and: [{'u._id': admin._id}]
+      ,
+        $setOnInsert:
+          name: channel
+          t: 'c'
+          open: true
+          alert: true
+          u:
+            _id: admin._id
+            username: admin.username
 
-    # Check if user is already in room
-    # subscription = RocketChat.models.Subscriptions.findOneByRoomIdAndUserId rid, Meteor.userId()
-    # if subscription?
-    #   return
-
-    user = RocketChat.models.Users.findOne {username: 'tim.johnson'}
-
-    RocketChat.callbacks.run 'beforeJoinRoom', user, room
-
-    RocketChat.models.Rooms.addUsernameById rid, user.username
-
-    RocketChat.models.Subscriptions.createWithRoomAndUser room, user,
-      ts: now
-      open: true
-      alert: true
-      unread: 1
-
-    RocketChat.models.Messages.createUserJoinWithRoomIdAndUser rid, user,
-      ts: now
-
-    Meteor.defer ->
-      RocketChat.callbacks.run 'afterJoinRoom', user, room
+      Meteor.defer ->
+        RocketChat.callbacks.run 'afterJoinRoom', admin, room
+    }
 
     return true
