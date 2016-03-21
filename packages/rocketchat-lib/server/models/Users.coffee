@@ -138,6 +138,8 @@ RocketChat.models.Users = new class extends RocketChat.models._Base
 		return @find(query, options)?.fetch?()?[0]?.lastLogin
 
 	findUsersByUsernames: (usernames, options) ->
+		if not _.isArray usernames
+			usernames = [usernames]
 		query =
 			username:
 				$in: usernames

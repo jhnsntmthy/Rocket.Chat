@@ -20,7 +20,10 @@ Package.onUse(function(api) {
 		'rocketchat:lib',
 	]);
 
-	api.addFiles('pubnub.connect.coffee', 'server');
+	api.addFiles('server/pubnub.connect.coffee', 'server');
+	api.addFiles('server/meteor.alertAgents.coffee', 'server');
+	api.addFiles('server/meteor.openRoomAgents.coffee', 'server');
+	api.addFiles('server/meteor.registerVisitor.coffee', 'server');
 	api.export(['Pubnub'], ['server']);
 });
 
