@@ -74,8 +74,8 @@ class PubnubReceiver
         ts: now
     try
       Meteor.call 'alertAgents', channel
-    catch
-      console.log 'alertAgents somehow failed'.red
+    catch err
+      console.log 'alertAgents somehow failed'.red, err
 
     return {
       t: 'c'
